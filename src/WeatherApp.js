@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import SearchIcon from '@mui/icons-material/Search';
+import CurrentTime from './CurrentTime';
 
 
 const WeatherApp = () => {
@@ -41,15 +42,18 @@ const WeatherApp = () => {
     console.log(info);
   return <>
   <div className='banner-area' >
+  <div className = 'time-area'>
+  <CurrentTime className='time'/>
+  </div>
   <div className='content-area'>
    <div className ='content'>
      <form  onSubmit={handleSubmit}>
-       <div className ='input'>
-         <input name='text' type= 'text' value={city} required onChange={(e) => setCity(e.target.value)} placeholder="City..."></input>
-         <SearchIcon onClick={handleFetch}></SearchIcon>
+       <div className ='search-field'>
+         <input className ='input' name='text' type= 'text' value={city} required onChange={(e) => setCity(e.target.value)} placeholder="City..."></input>
+         <SearchIcon className = 'search-icon' onClick={handleFetch}></SearchIcon>
        </div>
       <br></br>
-      <h1>{info.name},{info.sys?.country}</h1>
+      <h1>{info.name} {info.sys?.country}</h1>
        <h1>{info.temprature?.temp}</h1>
       <img className='weather-icon' src={`http://openweathermap.org/img/w/${info.condition?.icon}.png`} alt=''/>
       <p>{info.condition?.description}</p>
